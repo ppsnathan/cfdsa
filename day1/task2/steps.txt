@@ -1,0 +1,25 @@
+#create a network
+
+docker network create nw-net
+
+
+#create a volume
+docker volume create nw-vol 
+
+#Run the database without exporting the port
+docker run -d \
+    --name nwdb --network nw-net \
+    -v nw-vol:/var/lib/mysql \
+    stackupiss/northwind-db:v1 
+
+
+#    --mount source=nw-vol,target=/var/lib/mysql \
+
+
+docker run -d -p 8080:3000 \
+  --name nwapp --network nw-net \
+  -e DB_HOST=nwdb \
+  -e DB_USER=root \
+  -e DB_PASSWORD=changeit \
+  stackupiss/northwind-app:v1 
+
