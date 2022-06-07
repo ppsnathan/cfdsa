@@ -1,0 +1,320 @@
+docker
+
+
+## Storage
+bind - host
+volume - docker managed
+
+--mount /host/dir:/container/mount/point (rw)
+--mount /host/dir:/container/mount/point:ro  (read-only)
+
+--mount source=nw-vol,target=/var/lib/mysql \
+
+
+
+
+## network
+
+bridge (default) - no dns
+host
+
+
+
+
+docker inspect c17 
+
+docker run -d -p 3306:3306 \          
+  --name nw-db \  
+  --mount source=nw-vol,target=/var/lib/mysql \
+  stackupiss/northwind-db:v1
+
+
+ docker ps -a 
+
+ docker exec -it c17 bash
+
+
+
+docker run psnathan/dov-bear1 -p 8081:3000 -e INSTANCE_NAME="glorious""
+docker run psnathan/dov-bear1 -p 8081:3000 -e INSTANCE_NAME="glorious" .
+docker run psnathan/dov-bear:v1 -p 8081:3000 -e INSTANCE_NAME="glorious" .
+ls ~psnathan/.docker
+ls ~psnathan/.docker/config.json
+cat ~psnathan/.docker/config.json
+echo $PATH
+mv ~/Downloads/cosign-darwin-amd64 ~/Downloads/CLDSA/
+cd ~/Downloads/CLDSA
+chmod 755 cosign-darwin-amd64
+sudo ln -s cosign-darwin-amd64 /Library/Apple/usr/bin/cosign
+sudo ln -s cosign-darwin-amd64 /usr/local/bin/cosign
+cosign
+ls -l /usr/local/bin/|cosign
+ls -l /usr/local/bin/|grep cosign
+sudo ln -s ~psnathan/Downloads/CLDSA/cosign-darwin-amd64 /usr/local/bin/cosign
+rm /usr/local/bin/cosign
+sudo ln -s ~psnathan/Downloads/CLDSA/cosign-darwin-amd64 /usr/local/bin/cosign
+cosign
+cosign
+cosign
+docker login ghcr.io
+docker images
+docker tag psnathan/dov-bear-go:v1 ghcr.io/ppsnathan/dov-bear-go:v1 
+docker push
+docker push ghcr.io/ppsnathan/dov-bear-go:v1 
+docker login ghcr.io
+docker login ghcr.io -u ppsnathan
+docker push ghcr.io/ppsnathan/dov-bear-go:v1 
+
+docker volume create nw-vol
+docker pull stackupiss/northwind-db:v1
+vi steps.txt
+
+
+
+docker run -d -p 3306:3306 \\n  --name nw-db \\n  --mount source=nw-vol,target=/var/lib/mysql \\n  stackupiss/northwind-db:v1
+mysql
+docker ps -a
+docker exec -it c17 bash
+docker inspect c17
+/volume
+docker inspect c17|less
+ls -l /var/lib/docker/volumes/nw-vol/_data
+sudo ls -l /var/lib/docker/volumes/nw-vol/_data
+docker volume help
+docker volume help
+docker volume incpect
+docker volume inspect
+docker volume inspect nw-vol
+ls -l /var/lib/docker/volumes/nw-vol/_data
+docker volume ls
+docker rm -f $( docker ps -a)
+docker ps -a
+ls -l /var/lib/docker/volumes/nw-vol/_data
+docker run -d -p 3306:3306 \\n  --name nw-db \\n  --mount source=nw-vol,target=/var/lib/mysql \\n  stackupiss/northwind-db:v1
+docker exec -it c17 bash
+docker run -d -p 3306:3306 \\n  --name nw-db \\n  --mount source=nw-vol,target=/var/lib/mysql \\n  stackupiss/northwind-db:v1
+docker ps -a
+docker exec -it 2c3 bash
+docker rm -f $( docker ps -a)
+docker network create nw-net
+docker run -d \\n    --name nwdb --network nw-net \\n    -v nw-vol:/var/lib/mysql \\n    stackupiss/northwind-db:v1 
+docker run -d -p 8080:3000 \\n  --name nwapp --network nw-net \\n  -e DB_HOST=nwdb \\n  -e DB_USER=root \\n  -e DB_PASSWORD=changeit \\n  stackupiss/northwind-app:v1 
+docket ps
+docker ps
+ls
+vi steps.txt
+docker rm -f $( docker ps -a)
+docker network delete nw-net
+docker network rm nw-net
+docker volume rm nw-vol
+history|less
+man history
+history help
+history -w /dev/stdout
+history | cut -c 8-|less
+
+docker pull chukmunlee/dov-bear:v2
+docker pull chukmunnlee/dov-bear:v2
+docker ps -a
+docker images help
+docker images 
+docker version
+docker pull chukmunnlee/dov-bear:v2
+docker pull mysql
+docker version
+docker images 
+docker run -d -p 8080:3000 --name dov0 chukmunnlee/dov-bear:v2
+docker ps
+docker version
+docker run -d -p 8081:3000 --name dov1 chukmunnlee/dov-bear:v2
+docker ps
+pwd
+cd Downloads
+cd CLDSA
+ls
+mkdir cfdsa
+rmdir cfdsa
+git clone https://github.com/ppsnathan/cfdsa.git
+ls -l
+cd cfdsa
+git remote -l
+git remote -v
+ls
+mkdir day1
+cd day1
+mv ~/Downloads/CLDSA/fortune_2022_06_06-10_32_46.zip .
+ls
+unzip fortune_2022_06_06-10_32_46.zip
+ls -l
+mv fortune_2022_06_06-10_32_46.zip ../../
+ls
+cd fortune
+ls
+cd ..
+git status
+git checkout -b fortune-app
+git status
+cd ..
+ls
+git status
+git add day1
+git commit -m "initial"
+git push
+git push --set-upstream origin fortune-app
+vi DOckerfile
+mv DOckerfile Dowqckerfile
+docker login 
+docker build -t psnathan/fortune:v1 .
+docker images
+docker run -d -p 8080:3000 --name fortune1 psnathan/fortune:v1
+docker ps -1
+docker ps -a
+docker rm -f 3533 
+docker rm -f f3f4
+docker run -d -p 8080:3000 --name fortune1 psnathan/fortune:v1
+docker ps -a
+docker rm -f 1f3
+docker run -d -p 8080:3000 --name fortune1 psnathan/fortune:v1
+docker logs 
+docker ps -a
+docker logs 090 -f
+docker inspect 090
+docker inspect 090|less
+docker push 
+docker push psnathan/fortune:v1
+docker exec 090 pwd
+docker exec -ti 090 bash
+ls -l
+pwd
+docker build -t psnathan/fortune:v1.1 .
+docker images
+docker images|grep fortune
+docker push psnathan/fortune:v1.1
+docker ps -a
+docker rm -f 090
+docker run -d -p 8080:3000 --name fortune2 psnathan/fortune:v1.1
+docker ps -a
+docker stop 22f
+docker ps -a
+docker start 22f
+docker ps -a
+docker ps -a
+docker stop 22f
+docker ps -a
+docker rm 22f
+docker ps -a
+docker images|grep fotune
+docker images|grep for
+docker rmi psnathan/fortune:v1
+docker ps -a
+docker images|grep for
+docker history psnathan/fortune:v1.1
+docker build -t psnathan/fortune:v1.2 .
+docker rm -f $(docker ps -aq)
+docker ps -aq
+docket ps -a
+docker ps -a
+docker run -d -p 8080:3000 --name fortune1 psnathan/fortune:v1.2
+docker run -d -p 8081:3000 --name fortune1 psnathan/fortune:v1.1
+docker run -d -p 8081:3000 --name fortune2 psnathan/fortune:v1.1
+docket ps -a
+docker ps -a
+docker pull https://hub.docker.com/r/nicolaka/netshoot:v0.5
+docker pull nicolaka/netshoot:v0.5
+docker ps -a
+cd ../dov-bear
+ls
+cd javascript
+vi Dockerfile
+cat Dockerfile
+docker built -t dov-bear:v1
+docker built -t dov-bear:v1 .
+docker build -t psnathan/dov-bear:v1 .
+docker -ps -a
+docker ps -a
+docker rm -f $(docker ps -aq)
+docker run -d -p 8080:3000 --name dov-bear1 psnathan/dov-bear:v1
+docker ps -a
+docker push psnathan/dov-bear:v1 
+pwd
+docker push psnathan/dov-bear:v1 
+docker run -d -p 8081:3000 --name dov-bear2 psnathan/dov-bear:v1 -e INSTANCE_NAME="glorious""
+docker run -d -p 8081:3000 --name dov-bear2 psnathan/dov-bear:v1 -e INSTANCE_NAME="glorious"
+docker ps -a
+docker rm -f $(docker ps -aq)
+docker ps -a
+docker run -d -p 8081:3000 --name dov-bear2 psnathan/dov-bear:v1 -e INSTANCE_NAME="glorious"
+docker ps -a
+docker run -d -p 8081:3000 -e INSTANCE_NAME="glorious" --name dov-bear2 psnathan/dov-bear:v1
+docker run -d -p 8081:3000 -e INSTANCE_NAME="glorious" --name dov-bear2 psnathan/dov-bear:v1
+docker rm -f $(docker ps -aq)
+docker run -d -p 8081:3000 -e INSTANCE_NAME="glorious" --name dov-bear2 psnathan/dov-bear:v1
+docker ps -a
+docker push psnathan/dov-bear:v1 
+git status
+git add ../
+git add ../../fortune/Dockerfile
+git status
+git commit -m "dov-bear" 
+git push
+git checkout -master
+git checkout master
+git checkout main
+git branches
+git branch
+git checkout fortune-app
+ls
+git status
+docker build -t psnathan/dov-bear-go:v1 .
+docker rmi psnathan/dov-bear-go:v1
+cd ../golang
+ls
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+ls
+cd ../golang
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+docker ps -a
+docker rm -f 366
+docker ps -a
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+docker login
+docker build -t psnathan/dov-bear-go:v1 .
+docker build -t psnathan/dov-bear-go:v1 .
+pwd
+cd ..
+ls
+cd ..
+sl
+ls
+cd task2
+s
+ls
+cat steps.txt
+git status
+git add ./
+ls
+git status
+git add ../dov-bear/golang/Dockerfile
+git status
+git commit -m "day1"
+git push
+git checkout main
+git pull
+cd ..
+
+
+
+
+
+
+
+
+
+
+
+ 
