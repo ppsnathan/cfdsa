@@ -21,6 +21,78 @@ host
 
 
 
+
+
+
+
+
+
+
+
+## Kubernetes
+
+# K8S control plane (master)
+ - api server
+ - controller manager
+ - scheduler
+ - etcd
+
+# K8S data plane (worker)
+ - container runtime e.g. docker
+ - kubelet
+ - kube-proxy
+
+
+
+
+k run netshoot --image=nicolaka/netshoot:latest --rm -ti -- bash
+
+
+k get svc -nmyns
+
+
+## day3
+
+Helm
+
+
+k get po/xxx -n ns
+k get po/xx -n ns -o yaml|vim -c 'set ft=yaml' -
+
+siege
+
+## 
+Exisitng pod:
+k exec po/mypod -ti -nmyns -- bash
+
+start and exec:
+k run <name> --images=nicolaka/netshoot -ti --rm -nmyns -- bash
+
+exec into a pod by joining it's namespace
+k debug po/mypod --images=nicolaka/netshoot -ti -nmyns -- bash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Scratch
+
 docker inspect c17 
 
 docker run -d -p 3306:3306 \          
