@@ -1,0 +1,88 @@
+---
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: bggapp-v2-deploy
+  labels:
+    name: bggapp-v2-deploy
+spec:
+  replicas: 1
+  #strategy:
+    #type: RollingUpdate
+    #rollingUpdate:
+     # maxSurge: 1
+     # maxUnavailable: 0
+      # maxSurge: 25%
+      # maxUnavailable: 25%
+  selector:
+    matchLabels:
+      name: bggapp-v2-po
+  template:
+    metadata:
+      name: bggapp-v2-po
+      labels:
+        name: bggapp-v2-po
+        dept: eng
+        version: v2
+    spec:
+      containers:
+      - name: bggapp-v2-container  
+        image: stackupiss/bgg-backend:v2
+        imagePullPolicy: IfNotPresent
+        args:
+        - --prefix
+        - /v2
+        envFrom:
+        - configMapRef:
+            name: bggapp-cm
+        - secretRef:
+            name: bggapp-secret
+        ports:
+        - containerPort: 3000
+        #livenessProbe:
+         # httpGet:
+         # path: /healthz
+          #  port: 3000
+          #  scheme: HTTP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bggapp-v2-svc
+  labels:
+    name: bggapp-v2-svc
+spec:
+  #type: ClusterIP
+  selector:
+    name: bggapp-v2-po
+    version: v2
+  ports:
+  - port: 3000
+    targetPort: 3000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bggapp-ing 
+  namespace: bggns
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: bgg.188.166.197.135.nip.io
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: bggapp-v1-svc
+            port:
+              number: 3000
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: bggapp-v2-svc
+            port:
+              number: 3000
