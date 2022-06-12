@@ -59,7 +59,7 @@ metadata:
 spec:
   ingressClassName: nginx 
   rules:
-  - host: tenant-146.190.4.104.nip.io
+  - host: tenant.188.166.197.135.nip.io
     http: 
       paths: 
       - path: /
